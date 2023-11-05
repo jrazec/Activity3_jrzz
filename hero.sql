@@ -161,3 +161,15 @@ ALTER TABLE item
 ADD item_price DECIMAL(6,2); 
 -- Used 6 digits since mostly, mlbb’s or any other MOBA games’ item
 --cost usually ranges from hundreds to thousands e.g(1234.10).
+
+--4 	Create new branch named "feat/update-delete-inactive"
+
+--Updated the value active status of the first hero from active to inactive.
+UPDATE TABLE hero  
+SET is_active=false
+WHERE hero_id=1;
+
+--Deleted the whole row in the first list of heroitem as
+--this associates the relationship between hero and their item.
+DELETE FROM heroitem 
+WHERE hero_id=1;
