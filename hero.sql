@@ -195,3 +195,21 @@ FROM hero AS H
 INNER JOIN class AS C
 ON H.class_id = C.class_id
 WHERE C.class_name LIKE  ‘%Archers%’;
+
+--7     Create new branch named "feat/select-avg-playerlevel-per-class"
+
+-- Grouped the players on their corresponding class name
+-- to retrieve the average player level for each class
+--> Used Left Join to also show ALL the class names, may
+--> their average be null or not null(that has a value or successfully got the average).
+
+SELECT
+    C.class_name AS “Class Name”,
+    AVG(P.player_level) AS “Avg Player Level”
+FROM class AS C
+LEFT JOIN hero AS H
+ON  H.class_id = C.class_id
+LEFT JOIN player AS P
+ON P.hero_id = H.hero_id
+GROUP BY C.class_name
+ORDER BY AVG(P.player_level) DESC;
