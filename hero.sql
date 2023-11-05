@@ -173,3 +173,15 @@ WHERE hero_id=1;
 --this associates the relationship between hero and their item.
 DELETE FROM heroitem 
 WHERE hero_id=1;
+
+--5     Create new branch named "feat/select-active-players"
+
+--Listed player's names and hero names that they are
+--actively using (excluding those players that have inactive heroes)
+SELECT
+   P.player_name AS “Player Name”,
+   H.hero_name AS “Hero Name (active)”
+FROM player  AS P
+INNER JOIN hero AS H
+ON P.hero_id = H.hero_id
+WHERE H.is_active = true;
